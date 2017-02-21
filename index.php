@@ -1,0 +1,19 @@
+<?php
+require("settings.php");
+require("action.php");
+?>
+<?php                
+if(!empty($_GET)||!empty($_POST)){
+    require("function.php");
+}else{
+  if(isset($_COOKIE["user_id"])){
+      if(isset($_GET['profile'])){require("profile.php");}else{require("home.php");}
+}else{ 
+    require("login.php");
+}
+        if(isset($_COOKIE["make_alert"])&&isset($_COOKIE["msg"])){
+        echo"<script>make_alert_right('$_COOKIE[msg]','$_COOKIE[make_alert]');</script>";
+        setcookie ("make_alert", "", time() - 3600);setcookie ("msg", "", time() - 3600);
+        }
+}  
+?>
